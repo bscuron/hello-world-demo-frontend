@@ -4,6 +4,7 @@ import { Pressable } from "@react-native-material/core";
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Button } from 'react-native-paper';
+import { IconButton, MD3Colors } from 'react-native-paper';
 
 export default function App() {
     return (
@@ -13,7 +14,12 @@ export default function App() {
                 Press me
             </Button>
             <Text>Open up App.tsx to start working on your app!</Text>
-            <Pressable style={{ width: 80, height: 80, backgroundColor: "skyblue" }} />
+            <IconButton
+                icon="camera"
+                iconColor={MD3Colors.error50}
+                size={20}
+                onPress={() => console.log('Pressed')}
+            />
             <StatusBar style="auto" />
         </View>
         </PaperProvider>
