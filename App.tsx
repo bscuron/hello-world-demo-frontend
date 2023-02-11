@@ -5,7 +5,7 @@ import { IconButton, MD3Colors } from 'react-native-paper';
 export default function App() {
     return (
         <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
+            <Text>Open up App.tsx to start working on your app! App is deployed on gh pages</Text>
             <IconButton
                 icon="camera"
                 iconColor={MD3Colors.error50}
