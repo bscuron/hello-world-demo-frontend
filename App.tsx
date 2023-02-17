@@ -1,19 +1,26 @@
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { IconButton, MD3Colors } from 'react-native-paper';
+import axios from 'axios';
 
 export default function App() {
+    const [children, setChildren] = useState([]);
+
+    // Runs on component mount
+    useEffect(() => {
+        axios.get('https://cis-linux2.temple.edu/bucketlistBackend/message')
+             .then(res => {
+                 const msg: string = res.data.message;
+                 const comp: Text = <Text key={children.length}>Message from server: `{msg}`</Text>;
+                 setChildren(arr => [...arr, comp]);
+             })
+             .catch(err => console.log(err));
+    }, []);
+
     return (
         <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <Text>Test deployment on gh pages</Text>
-            <IconButton
-                icon="camera"
-                iconColor={MD3Colors.error50}
-                size={20}
-                onPress={() => console.log('Pressed')}
-            />
-            <StatusBar style="auto" />
+            {children}
         </View>
     );
 }
