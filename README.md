@@ -1,3 +1,3 @@
 # Hello World Demo
 
-[demo](https://bscuron.github.io/hello-world-demo-frontend/)
+Demo: [https://cis-linux2.temple.edu/bucketlist](https://cis-linux2.temple.edu/bucketlist)
