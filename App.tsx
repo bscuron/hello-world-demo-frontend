@@ -9,20 +9,21 @@ export default function App() {
 
     // Runs on component mount
     useEffect(() => {
-        axios.get('https://cis-linux2.temple.edu/bucketlistBackend/message')
-             .then(res => {
-                 const msg: string = res.data.message;
-                 const comp: Text = <Text key={children.length}>Message from server: `{msg}`</Text>;
-                 setChildren(arr => [...arr, comp]);
-             })
-             .catch(err => console.log(err));
+        axios
+            .get('https://cis-linux2.temple.edu/bucketlistBackend/message')
+            .then((res) => {
+                const msg: string = res.data.message;
+                const comp: Text = (
+                    <Text key={children.length}>
+                        Message from server: `{msg}`
+                    </Text>
+                );
+                setChildren((arr) => [...arr, comp]);
+            })
+            .catch((err) => console.log(err));
     }, []);
 
-    return (
-        <View style={styles.container}>
-            {children}
-        </View>
-    );
+    return <View style={styles.container}>{children}</View>;
 }
 
 const styles = StyleSheet.create({
@@ -30,6 +31,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
-    },
+        justifyContent: 'center'
+    }
 });
