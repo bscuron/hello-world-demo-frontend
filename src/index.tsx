@@ -1,14 +1,14 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-import { HomeScreen } from './screens';
+import { SignupScreen, DBScreen } from './screens';
 
 const Router = createStackNavigator(
     {
-        HomeScreen
+        SignupScreen,
+        DBScreen // TODO: remove this screen (just shows database contents)
     },
     {
-        initialRouteName: 'HomeScreen',
+        initialRouteName: 'SignupScreen',
         headerMode: 'none'
     }
 );

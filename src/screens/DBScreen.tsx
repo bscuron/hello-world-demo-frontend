@@ -8,13 +8,13 @@ type Props = {
     navigation: Navigation;
 };
 
-const HomeScreen = ({ navigation }: Props) => {
+const DBScreen = ({ navigation }: Props) => {
     const [children, setChildren] = useState([]);
 
     // Runs on component mount
     useEffect(() => {
         axios
-            .get('https://cis-linux2.temple.edu/bucketlistBackend/message')
+            .get('https://cis-linux2.temple.edu/bucketlistBackend/database')
             .then((res) => {
                 const msg: string = res.data.message;
                 const comp: Text = (
@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }: Props) => {
     return <View style={styles.container}>{children}</View>;
 };
 
-export default memo(HomeScreen);
+export default memo(DBScreen);
 
 const styles = StyleSheet.create({
     container: {
