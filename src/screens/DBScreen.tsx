@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Navigation } from '../types';
-import { StyleSheet, View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { StyleSheet, ScrollView } from 'react-native';
+import { Text, DataTable } from 'react-native-paper';
 import axios from 'axios';
 
 type Props = {
@@ -16,27 +16,31 @@ const DBScreen = ({ navigation }: Props) => {
         axios
             .get('https://cis-linux2.temple.edu/bucketlistBackend/database')
             .then((res) => {
-                const msg: string = res.data.message;
-                const comp: Text = (
-                    <Text key={children.length}>
-                        Message from server: `{msg}`
-                    </Text>
+                const rows = res.data.rows.map((row) => (
+                    <DataTable.Row key={row.id}>
+                        <DataTable.Cell>{row.id}</DataTable.Cell>
+                        <DataTable.Cell>{row.username}</DataTable.Cell>
+                        <DataTable.Cell>{row.email}</DataTable.Cell>
+                        <DataTable.Cell>{row.password}</DataTable.Cell>
+                    </DataTable.Row>
+                ));
+                const table = (
+                    <DataTable key={children.length}>
+                        <DataTable.Header>
+                            <DataTable.Title>ID</DataTable.Title>
+                            <DataTable.Title>Username</DataTable.Title>
+                            <DataTable.Title>Email</DataTable.Title>
+                            <DataTable.Title>Password</DataTable.Title>
+                        </DataTable.Header>
+                        {rows}
+                    </DataTable>
                 );
-                setChildren((arr) => [...arr, comp]);
+                setChildren((arr) => [...arr, table]);
             })
             .catch((err) => console.log(err));
     }, []);
 
-    return <View style={styles.container}>{children}</View>;
+    return <ScrollView vertical>{children}</ScrollView>;
 };
 
 export default memo(DBScreen);
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
