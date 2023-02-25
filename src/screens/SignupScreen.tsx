@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Navigation } from '../types';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
 import axios from 'axios';
 
@@ -34,7 +34,10 @@ const SignupScreen = ({ navigation }: Props) => {
     };
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+        >
             <Text variant="headlineLarge">Create Your Account</Text>
             <TextInput
                 style={styles.input}
@@ -71,7 +74,7 @@ const SignupScreen = ({ navigation }: Props) => {
             >
                 Sign up
             </Button>
-        </View>
+        </KeyboardAvoidingView>
     );
 };
 
